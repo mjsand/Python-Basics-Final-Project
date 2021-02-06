@@ -22,16 +22,16 @@ def get_basketball_stats(link='https://en.wikipedia.org/wiki/Michael_Jordan'):
 
     #the headers of the table are the first table row (tr) we create a tag object that has the first row  
     headers=table.tr
-    #the table column names are displayed  as an abbreviation; therefore we find all the abbr tags and returs an Iterator
+    #the table column names are displayed as an abbreviation; therefore we find all the abbr tags and return an Iterator
     titles=headers.find_all("abbr")
     #we create a dictionary  and pass the table headers as the keys 
     data = {title['title']:[] for title in titles}
-   #we will store each column as a list in a dictionary, the header of the column will be the dictionary key 
+   #we will store each column as a list in a dictionary. the header of the column will be the dictionary key 
 
-    #we iterate over each table row by fining each table tag tr and assign it to the objed
+    #we iterate over each table row by finding each table tag tr and assign it to the object
     for row in table.find_all('tr')[1:]:
     
-        #we iterate over each cell in the table, as each cell corresponds to a different column we all obtain the correspondin key corresponding the column n 
+        #we iterate over each cell in the table, as each cell corresponds to a different column. we obtain the corresponding key for the column n 
         for key,a in zip(data.keys(),row.find_all("td")[2:]):
             # we append each elment and strip any extra HTML contnet 
             data[key].append(''.join(c for c in a.text if (c.isdigit() or c == ".")))
@@ -58,16 +58,34 @@ lebron_james_df = pd.DataFrame(lebron_james_dict)
 steph_curry_df = pd.DataFrame(steph_curry_dict)
 
 #displaying dataframes 
-print('Michael Jordan\n', michael_jordan_df.head()) 
-print('Kobe Bryant\n', kobe_bryant_df.head())
-print('Lebron James\n', lebron_james_df.head())
-print('Steph Curry\n', steph_curry_df.head())
+#print('Michael Jordan\n', michael_jordan_df.head()) 
+#print('Kobe Bryant\n', kobe_bryant_df.head())
+#print('Lebron James\n', lebron_james_df.head())
+#print('Steph Curry\n', steph_curry_df.head())
+y = np.linspace(0,14,15).astype(int)
+
 
 #plotting each player's points per game for every year
-plt.plot(michael_jordan_df[['Points per game']], label=names[0])
-plt.plot(kobe_bryant_df[['Points per game']], label=names[1])
-plt.plot(lebron_james_df[['Points per game']], label=names[2])
-plt.plot(steph_curry_df[['Points per game']], label=names[3])
+plt.scatter(y, michael_jordan_df[['Points per game']], label=names[0])
+#plt.plot(kobe_bryant_df[['Points per game']], label=names[1])
+#plt.scatter(lebron_james_df[['Points per game']], label=names[2])
+#plt.scatter(steph_curry_df[['Points per game']], label=names[3])
 plt.legend()
 plt.xlabel('years')
 plt.ylabel('Points per game')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
