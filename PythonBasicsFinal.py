@@ -58,18 +58,19 @@ lebron_james_df = pd.DataFrame(lebron_james_dict)
 steph_curry_df = pd.DataFrame(steph_curry_dict)
 
 #displaying dataframes 
-#print('Michael Jordan\n', michael_jordan_df.head()) 
-#print('Kobe Bryant\n', kobe_bryant_df.head())
-#print('Lebron James\n', lebron_james_df.head())
-#print('Steph Curry\n', steph_curry_df.head())
+print('Michael Jordan\n', michael_jordan_df.head()) 
+print('Kobe Bryant\n', kobe_bryant_df.head())
+print('Lebron James\n', lebron_james_df.head())
+print('Steph Curry\n', steph_curry_df.head())
+
+#linspace created for michael jordan scatter plot
 y = np.linspace(0,14,15).astype(int)
 
-
 #plotting each player's points per game for every year
-plt.scatter(y, michael_jordan_df[['Points per game']], label=names[0])
-#plt.plot(kobe_bryant_df[['Points per game']], label=names[1])
-#plt.scatter(lebron_james_df[['Points per game']], label=names[2])
-#plt.scatter(steph_curry_df[['Points per game']], label=names[3])
+plt.plot(michael_jordan_df[['Points per game']], label=names[0])
+plt.plot(kobe_bryant_df[['Points per game']], label=names[1])
+plt.plot(lebron_james_df[['Points per game']], label=names[2])
+plt.plot(steph_curry_df[['Points per game']], label=names[3])
 plt.legend()
 plt.xlabel('years')
 plt.ylabel('Points per game')
